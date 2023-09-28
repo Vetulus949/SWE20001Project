@@ -1,0 +1,72 @@
+html 
+    - function dump(action, num) {console.log("dump called"); document.getElementByID('passer').innerHTML = action + num;}
+    head
+        title Ticket Buddy - Admin 
+    body 
+        h1 Admin 
+        p=message
+        h2 Create User
+        table(id="createUsers")
+            tr
+                td
+                    form(action='/createUser', Method='post') 
+                        label(for='name') name:
+                        input(type='text', name='name', id='name')
+                        label(for='pass') pass:
+                        input(type='text', name='pass', id='pass')
+                        p permissions: 
+                        label(for='0') None:
+                        input(type='radio', id='0', name='perms', value='0')
+                        br
+                        label(for='1') Technician:
+                        input(type='radio', id='1', name='perms', value='1')
+                        br
+                        label(for='2') Admin:
+                        input(type='radio', id='2', name='perms', value='2')
+                        br
+                        input(type='submit')
+        h2 Edit or Delete Users 
+        table(id="editUsers")         
+            tr
+                th ID 
+                th Name 
+                th Pass
+                th Permissions 
+                th Actions
+            - for (var i=0; i<userList.length; i++) {
+                form(action='/editUser?id='+i, method='post')
+                    tr 
+                        td
+                            input(type='text', value=userList[i].userID, disabled, id='userID', name='userID')
+                        td
+                            input(type='text', value=userList[i].name, id='userName', name='userName')
+                        td
+                            input(type='text', value=userList[i].pass, id='userPass', name='userPass')
+                        td
+                            input(type='text', value=userList[i].permissions, id='userPermissions', name='userPermissions')
+                        td
+                            input(type='submit',id='change', name='change', value='change')
+                            input(type='submit',id='delete', name='delete', value='delete')
+            - }
+        h2 View or Delete Tickets 
+        table(id="editTickets")
+            tr 
+                th ID 
+                th Name
+                th Description
+                th Creator 
+                th Assigned Tech
+            - for (var i=0; i<ticketList.length; i++) {
+                form(action='/editTicket?id='+i, method='post')
+                    tr
+                        td
+                            input(type='text', value=ticketList[i].ticketID, disabled, id='ticketID', name='ticketID')
+                        td 
+                            input(type='text', value=ticketList[i].name, disabled, id='ticketName', name='ticketName')
+                        td 
+                            input(type='text', value=ticketList[i].description, disabled, id='ticketDesc', name='ticketDesc')
+                        td 
+                            input(type='text', value=userList[ticketList[i].creator].name, disabled, id='ticketCreator', name='ticketCreator')
+                        td 
+                            input(type='text', value=userList[i].tech, id='ticketTech', name='ticketTech')
+            - }

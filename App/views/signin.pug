@@ -1,0 +1,15 @@
+html
+  head
+    title Ticket Buddy - Signin
+  body
+    h1 Signin 
+    p
+      form(action='/signin', method='post')
+        label(for='name') name:
+        input(type='text', name='name', id='name')
+        br
+        label(for='pass') password: 
+        input(type='text', name='pass', id='pass')
+        br
+        input(type='submit')
+    p(name='success')
