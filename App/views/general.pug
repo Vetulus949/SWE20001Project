@@ -1,0 +1,18 @@
+html
+    head
+        title Ticket Buddy - Create a ticket 
+    body 
+        h1 Create a Ticket 
+        form(action="/signout", method="post")
+            input(type="submit", value="signout")
+        p=message
+        form(action='/createTicket?id='+userid, method='post', id='createTicket', name='createTicket')
+            label(for='ticketName') Ticket Name: 
+            br
+            input(type='text', id='ticketName', name='ticketName')
+            br
+            label(for='ticketDesc') Ticket Description:
+            br
+            input(type='text', id='ticketDesc', name='ticketDesc')
+            br
+            input(type='submit', value='submit ticket')

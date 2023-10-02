@@ -1,0 +1,67 @@
+html
+    head 
+        title Ticket Buddy - Technician
+    body 
+        h1 Technician
+        form(action="/signout", method="post")
+            input(type="submit", value="signout")
+        p=message
+        h2 Your Tickets 
+        p
+            table(id="TechTickets", name="TechTickets")
+                tr
+                    th ID 
+                    th Ticket Name
+                    th Description 
+                    th Comments 
+                    th Status
+                    th Actions
+                - for (var i=0; i<claimed.length; i++) {
+                    form(action="/techTicketChanges?ticketID="+claimed[i].ticketID+"&thisuser="+userid, method="post")
+                        tr
+                            td=claimed[i].ticketID
+                            td=claimed[i].name
+                            td=claimed[i].description
+                            td 
+                                textarea(id='comments', name='comments')=claimed[i].comments
+                            - if (claimed[i].status == 0) {
+                                td unclaimed
+                            - } else if (claimed[i].status == 1) {
+                                td in progress
+                            - } else {
+                                td error
+                            - }
+                            td 
+                                input(type="submit", id="forfeit", name="forfeit", value="Forfeit Ticket")
+                                br
+                                input(type="submit", id="commit", name="commit", value="Commit Changes")
+                                br
+                                input(type="submit", id="close", name="close", value="Close Ticket")
+                - }
+        h2 Unclaimed Tickets
+        p 
+            table(id="Tickets", name="tickets")
+                tr 
+                    th ID 
+                    th Ticket Name 
+                    th Description 
+                    th Status
+                    th Actions 
+                - for (var i=0; i<notClaimed.length; i++) {
+                    form(action="/claimTicket?ticketID="+notClaimed[i].ticketID+"&thisuser="+userid, method='post')
+                        tr 
+                            td=notClaimed[i].ticketID
+                            td=notClaimed[i].name
+                            td=notClaimed[i].description
+                            - if (notClaimed[i].status == 0) {
+                                td unclaimed
+                            - } else if (notClaimed[i].status == 1) {
+                                td in progress
+                            - } else {
+                                td error
+                            - }
+                            - if (notClaimed[i].status == 0) {
+                                td 
+                                    input(type="submit", value="claim ticket")
+                            - }
+                - }

@@ -3,12 +3,15 @@ html
     title Ticket Buddy - Signin
   body
     h1 Signin 
-    p
-      form(action='/signin', method='post')
+    p please enter login details: 
+      br
+      form(action='/signin', method='post' id='signin' name='signin')
         label(for='name') name:
+        br
         input(type='text', name='name', id='name')
         br
         label(for='pass') password: 
+        br
         input(type='text', name='pass', id='pass')
         br
         input(type='submit')
