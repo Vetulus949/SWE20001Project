@@ -48,6 +48,33 @@ LOCK TABLES `tickets` WRITE;
 INSERT INTO `tickets` VALUES (1,'TestTicket','This ticket is a test',2,6,_binary 'Test',1),(2,'AnotherTest','This is another test ticket',2,NULL,'',2),(3,'testNumeroTre','aijdilauhaihrl;a',2,NULL,'',0);
 /*!40000 ALTER TABLE `tickets` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `users` (
+  `userID` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) NOT NULL,
+  `pass` varchar(45) NOT NULL,
+  `permissions` int NOT NULL DEFAULT '0',
+  PRIMARY KEY (`userID`),
+  UNIQUE KEY `idUsers_UNIQUE` (`userID`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `users`
+--
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,'Admin','Pa55w.rd',2),(2,'nonAdmin','Pa55w.rd',0),(3,'TestChange','Test2',0),(5,'Test2','Test2',0),(6,'Test3','Test3',1);
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -58,4 +85,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-02 13:05:43
+-- Dump completed on 2023-10-02 13:38:14
