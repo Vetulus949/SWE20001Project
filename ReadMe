@@ -1,1 +1,17 @@
-
+# SWE20001 Project
+## Setup
+First ensure that you have Node.JS installed on your system, from [their website here](https://nodejs.org/en)
+### Setting up mySql server
+To use the server there also needs to be a local instance of mySQL running.
+To set up the database run the *schema.sql* file either through the mysql terminal or your prefered interface.
+### Running the Server
+Either navigate to the App directory in the terminal and execute the Node.JS command *npm start* to start the server.
+Or run the *startServer.bat* file also in the app directory.
+Once the terminal echos "Running at Port 3000" the server is running. To close the server simply close the terminal.
+To access the web app go to "localhost:3000" on your prefered internet browser.
+## Trouble Shooting
+If the terminal does not echo "Running at port 3000", the server has not starting.
+If you are using the startServer bat file the terminal the terminal will also close instead of showing the error; to see the error run *npm start* from the app directory in another terminal.
+The most likely cause of the error is due to issues with creating the connection to your local mySQL server.
+To fix this in App.JS ensure that the variable "con" matches your local server and connects to the correct database.
+Additionally if your mySQL server is not running on the default mySQL ports you may need to add the line `port: [Your established mysql port]`
